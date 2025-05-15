@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chucks jokes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #joke {
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px; /* Adds padding between buttons */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Kategorien</h1>
+    <div class="button-container">
+        {% for category in categories %}
+        <button onclick="fetchChuckNorrisJoke('{{ category }}')">{{ category }}</button>
+        {% endfor %}
+    </div>
+    <div id="joke"></div>
+
+    <script>
+        function fetchChuckNorrisJoke(category) {
+            fetch(`/joke/${category}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('joke').innerText = data.joke.value;
+                })
+                .catch(error => {
+                    console.error('Fehler beim Abrufen der Daten:', error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>
