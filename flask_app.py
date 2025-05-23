@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template
 import requests
 
 def get_categories():
-    return ["dev", "animal", "food"]
+    return ["dev", "animal", "food", "sports", "outdoor"]
     # URL= "https://api.chucknorris.io/jokes/categories"
     # response = requests.get(URL)
 
